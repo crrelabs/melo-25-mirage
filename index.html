@@ -46,10 +46,8 @@
     </script>
 
     <style>
-        /* Smooth scrolling */
         html { scroll-behavior: smooth; }
 
-        /* Scroll animations */
         .fade-up {
             opacity: 0;
             transform: translateY(40px);
@@ -67,7 +65,6 @@
             opacity: 1;
         }
 
-        /* Parallax hero */
         .hero-parallax {
             background-attachment: fixed;
             background-position: center;
@@ -79,14 +76,12 @@
             }
         }
 
-        /* Sticky nav transition */
         .nav-scrolled {
             background: rgba(26, 42, 58, 0.98) !important;
             backdrop-filter: blur(12px);
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
-        /* Floor plan cards */
         .floorplan-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -95,7 +90,6 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
-        /* Amenity cards */
         .amenity-card {
             transition: transform 0.4s ease;
         }
@@ -103,7 +97,6 @@
             transform: scale(1.02);
         }
 
-        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -122,16 +115,29 @@
             object-fit: contain;
         }
 
-        /* Decorative line */
         .accent-line {
             width: 60px;
             height: 2px;
             background: #00A99D;
         }
 
-        /* Section spacing */
         section {
             overflow: hidden;
+        }
+
+        /* Gallery grid */
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 0.75rem;
+        }
+        .gallery-item img {
+            transition: transform 0.5s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
         }
     </style>
 </head>
@@ -147,6 +153,7 @@
             <ul class="hidden md:flex items-center gap-8">
                 <li><a href="#home" class="text-white/90 hover:text-teal-300 text-sm font-medium tracking-wider uppercase transition-colors">Home</a></li>
                 <li><a href="#about" class="text-white/90 hover:text-teal-300 text-sm font-medium tracking-wider uppercase transition-colors">About</a></li>
+                <li><a href="#gallery" class="text-white/90 hover:text-teal-300 text-sm font-medium tracking-wider uppercase transition-colors">Gallery</a></li>
                 <li><a href="#floorplans" class="text-white/90 hover:text-teal-300 text-sm font-medium tracking-wider uppercase transition-colors">Floorplans</a></li>
                 <li><a href="#amenities" class="text-white/90 hover:text-teal-300 text-sm font-medium tracking-wider uppercase transition-colors">Amenities</a></li>
                 <li><a href="#location" class="text-white/90 hover:text-teal-300 text-sm font-medium tracking-wider uppercase transition-colors">Location</a></li>
@@ -165,6 +172,7 @@
             <ul class="flex flex-col items-center py-6 gap-4">
                 <li><a href="#home" class="text-white/90 hover:text-teal-300 text-sm font-medium tracking-wider uppercase">Home</a></li>
                 <li><a href="#about" class="text-white/90 hover:text-teal-300 text-sm font-medium tracking-wider uppercase">About</a></li>
+                <li><a href="#gallery" class="text-white/90 hover:text-teal-300 text-sm font-medium tracking-wider uppercase">Gallery</a></li>
                 <li><a href="#floorplans" class="text-white/90 hover:text-teal-300 text-sm font-medium tracking-wider uppercase">Floorplans</a></li>
                 <li><a href="#amenities" class="text-white/90 hover:text-teal-300 text-sm font-medium tracking-wider uppercase">Amenities</a></li>
                 <li><a href="#location" class="text-white/90 hover:text-teal-300 text-sm font-medium tracking-wider uppercase">Location</a></li>
@@ -193,7 +201,6 @@
                 </a>
             </div>
         </div>
-        <!-- Scroll indicator -->
         <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
             <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
@@ -247,7 +254,7 @@
                 </div>
                 <div class="fade-up" style="transition-delay: 0.2s;">
                     <div class="relative">
-                        <img src="images/kitchen-interior.jpg" alt="25 Mirage luxury interior" class="rounded-lg shadow-2xl w-full">
+                        <img src="images/kitchen-interior.jpg" alt="25 Mirage luxury kitchen with balcony views" class="rounded-lg shadow-2xl w-full">
                         <div class="absolute -bottom-6 -left-6 bg-teal-500 text-white p-6 rounded-lg shadow-xl hidden md:block">
                             <p class="font-serif text-3xl font-bold">Since 2014</p>
                             <p class="text-sm text-white/80">Edgewater Living</p>
@@ -258,8 +265,62 @@
         </div>
     </section>
 
+    <!-- Photo Gallery Section -->
+    <section id="gallery" class="py-20 md:py-28 bg-white">
+        <div class="max-w-[1200px] mx-auto px-6">
+            <div class="text-center mb-16 fade-up">
+                <div class="accent-line mx-auto mb-6"></div>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-navy-900 mb-4">Gallery</h2>
+                <p class="text-navy-600 text-lg max-w-2xl mx-auto">
+                    Discover the beauty of 25 Mirage — from stunning city views to refined interiors and resort-style amenities.
+                </p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                <!-- Row 1: Wide exterior + pool -->
+                <div class="gallery-item col-span-2 h-[280px] md:h-[380px] shadow-lg cursor-pointer fade-up" onclick="openLightbox('images/exterior-street.jpg')">
+                    <img src="images/exterior-street.jpg" alt="25 Mirage building exterior with palm trees" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item h-[280px] md:h-[380px] shadow-lg cursor-pointer fade-up" style="transition-delay: 0.1s;" onclick="openLightbox('images/pool-deck.jpg')">
+                    <img src="images/pool-deck.jpg" alt="Rooftop pool with Miami skyline views" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Row 2: Views + Living -->
+                <div class="gallery-item h-[240px] md:h-[320px] shadow-lg cursor-pointer fade-up" onclick="openLightbox('images/view-south.jpg')">
+                    <img src="images/view-south.jpg" alt="Panoramic downtown Miami skyline view" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item h-[240px] md:h-[320px] shadow-lg cursor-pointer fade-up" style="transition-delay: 0.1s;" onclick="openLightbox('images/living-room.jpg')">
+                    <img src="images/living-room.jpg" alt="Spacious living room with hardwood floors" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item h-[240px] md:h-[320px] shadow-lg cursor-pointer fade-up" style="transition-delay: 0.2s;" onclick="openLightbox('images/lobby.jpg')">
+                    <img src="images/lobby.jpg" alt="Modern lobby with designer furniture" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Row 3: Kitchen + Bathroom + Views -->
+                <div class="gallery-item h-[240px] md:h-[320px] shadow-lg cursor-pointer fade-up" onclick="openLightbox('images/kitchen-dining.jpg')">
+                    <img src="images/kitchen-dining.jpg" alt="Modern kitchen with granite breakfast bar" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item h-[240px] md:h-[320px] shadow-lg cursor-pointer fade-up" style="transition-delay: 0.1s;" onclick="openLightbox('images/fitness-center.jpg')">
+                    <img src="images/fitness-center.jpg" alt="Fitness center with city views" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item h-[240px] md:h-[320px] shadow-lg cursor-pointer fade-up" style="transition-delay: 0.2s;" onclick="openLightbox('images/view-north.jpg')">
+                    <img src="images/view-north.jpg" alt="Panoramic Edgewater and Wynwood views" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Row 4: Pool alt + Bathroom + Lobby detail -->
+                <div class="gallery-item col-span-2 h-[240px] md:h-[320px] shadow-lg cursor-pointer fade-up" onclick="openLightbox('images/pool-alt.jpg')">
+                    <img src="images/pool-alt.jpg" alt="Pool deck with lounge chairs and city views" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item h-[240px] md:h-[320px] shadow-lg cursor-pointer fade-up" style="transition-delay: 0.1s;" onclick="openLightbox('images/bathroom.jpg')">
+                    <img src="images/bathroom.jpg" alt="Modern bathroom with granite vanity" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Floorplans Section -->
-    <section id="floorplans" class="py-20 md:py-28 bg-white">
+    <section id="floorplans" class="py-20 md:py-28 bg-cream-50">
         <div class="max-w-[1200px] mx-auto px-6">
             <div class="text-center mb-16 fade-up">
                 <div class="accent-line mx-auto mb-6"></div>
@@ -269,40 +330,48 @@
                 </p>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="floorplan-card bg-cream-50 rounded-xl overflow-hidden shadow-lg cursor-pointer fade-up" onclick="openLightbox('floorplans/unit-1.png')">
-                    <div class="p-4">
-                        <img src="floorplans/unit-1.png" alt="Unit 1 Floorplan" class="w-full h-auto">
+                <!-- Unit 1: 1BR/1BA + Den – 910 SF -->
+                <div class="floorplan-card bg-white rounded-xl overflow-hidden shadow-lg cursor-pointer fade-up" onclick="openLightbox('floorplans/unit-1.jpg')">
+                    <div class="p-4 bg-cream-50">
+                        <img src="floorplans/unit-1.jpg" alt="1 Bedroom + Den Floorplan – 910 SF" class="w-full h-auto">
                     </div>
                     <div class="bg-navy-900 text-white px-6 py-4 text-center">
-                        <h3 class="font-serif text-xl font-semibold">Unit 1</h3>
-                        <p class="text-white/60 text-sm">Click to enlarge</p>
+                        <h3 class="font-serif text-xl font-semibold">1 Bed / 1 Bath + Den</h3>
+                        <p class="text-teal-300 text-sm font-medium mt-1">910 SF</p>
+                        <p class="text-white/50 text-xs mt-1">Click to enlarge</p>
                     </div>
                 </div>
-                <div class="floorplan-card bg-cream-50 rounded-xl overflow-hidden shadow-lg cursor-pointer fade-up" style="transition-delay: 0.1s;" onclick="openLightbox('floorplans/unit-2.png')">
-                    <div class="p-4">
-                        <img src="floorplans/unit-2.png" alt="Unit 2 Floorplan" class="w-full h-auto">
+                <!-- Unit 2: 2BR/2BA – 1,162 SF -->
+                <div class="floorplan-card bg-white rounded-xl overflow-hidden shadow-lg cursor-pointer fade-up" style="transition-delay: 0.1s;" onclick="openLightbox('floorplans/unit-2.jpg')">
+                    <div class="p-4 bg-cream-50">
+                        <img src="floorplans/unit-2.jpg" alt="2 Bedroom / 2 Bath Floorplan – 1,162 SF" class="w-full h-auto">
                     </div>
                     <div class="bg-navy-900 text-white px-6 py-4 text-center">
-                        <h3 class="font-serif text-xl font-semibold">Unit 2</h3>
-                        <p class="text-white/60 text-sm">Click to enlarge</p>
+                        <h3 class="font-serif text-xl font-semibold">2 Bed / 2 Bath</h3>
+                        <p class="text-teal-300 text-sm font-medium mt-1">1,162 SF</p>
+                        <p class="text-white/50 text-xs mt-1">Click to enlarge</p>
                     </div>
                 </div>
-                <div class="floorplan-card bg-cream-50 rounded-xl overflow-hidden shadow-lg cursor-pointer fade-up" style="transition-delay: 0.2s;" onclick="openLightbox('floorplans/unit-3.png')">
-                    <div class="p-4">
-                        <img src="floorplans/unit-3.png" alt="Unit 3 Floorplan" class="w-full h-auto">
+                <!-- Unit 3: 2BR/2BA + Den – 1,340 SF -->
+                <div class="floorplan-card bg-white rounded-xl overflow-hidden shadow-lg cursor-pointer fade-up" style="transition-delay: 0.2s;" onclick="openLightbox('floorplans/unit-3.jpg')">
+                    <div class="p-4 bg-cream-50">
+                        <img src="floorplans/unit-3.jpg" alt="2 Bedroom / 2 Bath + Den Floorplan – 1,340 SF" class="w-full h-auto">
                     </div>
                     <div class="bg-navy-900 text-white px-6 py-4 text-center">
-                        <h3 class="font-serif text-xl font-semibold">Unit 3</h3>
-                        <p class="text-white/60 text-sm">Click to enlarge</p>
+                        <h3 class="font-serif text-xl font-semibold">2 Bed / 2 Bath + Den</h3>
+                        <p class="text-teal-300 text-sm font-medium mt-1">1,340 SF</p>
+                        <p class="text-white/50 text-xs mt-1">Click to enlarge</p>
                     </div>
                 </div>
-                <div class="floorplan-card bg-cream-50 rounded-xl overflow-hidden shadow-lg cursor-pointer fade-up" style="transition-delay: 0.3s;" onclick="openLightbox('floorplans/unit-4.png')">
-                    <div class="p-4">
-                        <img src="floorplans/unit-4.png" alt="Unit 4 Floorplan" class="w-full h-auto">
+                <!-- Unit 4: 3BR/2BA + Den – 1,430 SF -->
+                <div class="floorplan-card bg-white rounded-xl overflow-hidden shadow-lg cursor-pointer fade-up" style="transition-delay: 0.3s;" onclick="openLightbox('floorplans/unit-4.jpg')">
+                    <div class="p-4 bg-cream-50">
+                        <img src="floorplans/unit-4.jpg" alt="3 Bedroom / 2 Bath + Den Floorplan – 1,430 SF" class="w-full h-auto">
                     </div>
                     <div class="bg-navy-900 text-white px-6 py-4 text-center">
-                        <h3 class="font-serif text-xl font-semibold">Unit 4</h3>
-                        <p class="text-white/60 text-sm">Click to enlarge</p>
+                        <h3 class="font-serif text-xl font-semibold">3 Bed / 2 Bath + Den</h3>
+                        <p class="text-teal-300 text-sm font-medium mt-1">1,430 SF</p>
+                        <p class="text-white/50 text-xs mt-1">Click to enlarge</p>
                     </div>
                 </div>
             </div>
@@ -323,7 +392,7 @@
             <!-- Amenity 1: Pool -->
             <div class="grid md:grid-cols-2 gap-12 items-center mb-20 fade-up">
                 <div class="amenity-card rounded-xl overflow-hidden shadow-2xl">
-                    <img src="images/pool-deck.jpg" alt="25 Mirage pool deck" class="w-full h-[350px] object-cover">
+                    <img src="images/pool-deck.jpg" alt="Rooftop pool overlooking the Miami skyline" class="w-full h-[350px] object-cover">
                 </div>
                 <div>
                     <div class="flex items-center gap-3 mb-4">
@@ -332,10 +401,10 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
                             </svg>
                         </div>
-                        <h3 class="font-serif text-3xl font-semibold">Swimming Pool</h3>
+                        <h3 class="font-serif text-3xl font-semibold">Rooftop Swimming Pool</h3>
                     </div>
                     <p class="text-white/70 text-lg leading-relaxed">
-                        Relax on the pool deck of 25 Mirage and enjoy views of Miami while you swim and soak up the sun. As a resident of this luxury high-rise, you can lounge on the large pool deck and unwind each day.
+                        Take in sweeping views of the Miami skyline from the rooftop pool deck. Lounge poolside with the downtown skyline as your backdrop — the perfect way to unwind after a long day in the city.
                     </p>
                 </div>
             </div>
@@ -352,18 +421,18 @@
                         <h3 class="font-serif text-3xl font-semibold">Fitness Center</h3>
                     </div>
                     <p class="text-white/70 text-lg leading-relaxed">
-                        Complement your healthy living regime with 25 Mirage's fully equipped, on-property fitness center. The facility offers strength and cardiovascular options suitable for any level of fitness, available every day within the comfort of your home.
+                        Complement your healthy living regime with 25 Mirage's fully equipped fitness center featuring floor-to-ceiling windows with city views. From spin bikes to free weights and multi-station machines — everything you need for a complete workout without leaving home.
                     </p>
                 </div>
                 <div class="amenity-card rounded-xl overflow-hidden shadow-2xl order-1 md:order-2">
-                    <img src="images/fitness-center.jpg" alt="25 Mirage fitness center" class="w-full h-[350px] object-cover">
+                    <img src="images/fitness-center.jpg" alt="State-of-the-art fitness center with city views" class="w-full h-[350px] object-cover">
                 </div>
             </div>
 
-            <!-- Amenity 3: Parking -->
-            <div class="grid md:grid-cols-2 gap-12 items-center fade-up">
+            <!-- Amenity 3: Lobby -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20 fade-up">
                 <div class="amenity-card rounded-xl overflow-hidden shadow-2xl">
-                    <img src="images/parking-garage.jpg" alt="25 Mirage covered parking" class="w-full h-[350px] object-cover">
+                    <img src="images/lobby.jpg" alt="Modern lobby with designer furniture and natural light" class="w-full h-[350px] object-cover">
                 </div>
                 <div>
                     <div class="flex items-center gap-3 mb-4">
@@ -372,10 +441,51 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                             </svg>
                         </div>
-                        <h3 class="font-serif text-3xl font-semibold">Covered Parking</h3>
+                        <h3 class="font-serif text-3xl font-semibold">Designer Lobby</h3>
                     </div>
                     <p class="text-white/70 text-lg leading-relaxed">
-                        Always have a spot waiting for you at home. In addition, proximity to public transportation and walkability means you can also leave your car safely at home while you enjoy everything the city has to offer.
+                        Arrive home to a beautifully appointed lobby featuring designer furnishings, modern artwork, and floor-to-ceiling glass that floods the space with natural light. It's the first impression of the luxury that awaits.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Amenity 4: Views -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20 fade-up">
+                <div class="order-2 md:order-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-teal-500/20 rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6 text-teal-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-serif text-3xl font-semibold">Panoramic Views</h3>
+                    </div>
+                    <p class="text-white/70 text-lg leading-relaxed">
+                        Every angle offers something stunning. From the downtown Miami skyline and Brickell's glittering towers to the colorful streets of Wynwood and beyond — 25 Mirage delivers views that make every day feel extraordinary.
+                    </p>
+                </div>
+                <div class="amenity-card rounded-xl overflow-hidden shadow-2xl order-1 md:order-2">
+                    <img src="images/view-south.jpg" alt="Panoramic downtown Miami and Brickell skyline views" class="w-full h-[350px] object-cover">
+                </div>
+            </div>
+
+            <!-- Amenity 5: In-Unit Laundry -->
+            <div class="grid md:grid-cols-2 gap-12 items-center fade-up">
+                <div class="amenity-card rounded-xl overflow-hidden shadow-2xl">
+                    <img src="images/kitchen-unfurnished.jpg" alt="Modern kitchen with granite countertops and wood cabinetry" class="w-full h-[350px] object-cover">
+                </div>
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-teal-500/20 rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6 text-teal-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-serif text-3xl font-semibold">Premium Finishes</h3>
+                    </div>
+                    <p class="text-white/70 text-lg leading-relaxed">
+                        Every unit comes equipped with granite countertops, rich wood cabinetry, full-sized appliances, and a private washer and dryer. Laminated wood floors in living areas and porcelain tiles in bathrooms complete the refined look.
                     </p>
                 </div>
             </div>
@@ -402,11 +512,23 @@
                     </div>
                     <div class="flex items-start gap-4 p-6 bg-white/5 rounded-xl fade-up" style="transition-delay: 0.2s;">
                         <div class="w-2 h-2 rounded-full bg-teal-300 mt-2.5 shrink-0"></div>
-                        <p class="text-white/80">Large swimming pool & deck</p>
+                        <p class="text-white/80">Rooftop swimming pool & deck</p>
                     </div>
                     <div class="flex items-start gap-4 p-6 bg-white/5 rounded-xl fade-up" style="transition-delay: 0.25s;">
                         <div class="w-2 h-2 rounded-full bg-teal-300 mt-2.5 shrink-0"></div>
                         <p class="text-white/80">Fully equipped fitness center</p>
+                    </div>
+                    <div class="flex items-start gap-4 p-6 bg-white/5 rounded-xl fade-up" style="transition-delay: 0.3s;">
+                        <div class="w-2 h-2 rounded-full bg-teal-300 mt-2.5 shrink-0"></div>
+                        <p class="text-white/80">Covered parking garage</p>
+                    </div>
+                    <div class="flex items-start gap-4 p-6 bg-white/5 rounded-xl fade-up" style="transition-delay: 0.35s;">
+                        <div class="w-2 h-2 rounded-full bg-teal-300 mt-2.5 shrink-0"></div>
+                        <p class="text-white/80">Designer lobby lounge</p>
+                    </div>
+                    <div class="flex items-start gap-4 p-6 bg-white/5 rounded-xl fade-up" style="transition-delay: 0.4s;">
+                        <div class="w-2 h-2 rounded-full bg-teal-300 mt-2.5 shrink-0"></div>
+                        <p class="text-white/80">Panoramic city views</p>
                     </div>
                 </div>
             </div>
@@ -612,7 +734,7 @@
     <!-- Lightbox -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <button class="absolute top-6 right-6 text-white/80 hover:text-white text-4xl" aria-label="Close">&times;</button>
-        <img id="lightboxImg" src="" alt="Floorplan enlarged view">
+        <img id="lightboxImg" src="" alt="Enlarged view">
     </div>
 
     <!-- Scripts -->
